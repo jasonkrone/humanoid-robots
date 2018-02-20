@@ -1,0 +1,21 @@
+\section{Experiments}
+\subsection{Tier 1}
+As discussed above we will duplicate the results presented in the paper 
+on three simulated environments designed for simulated reaching, 
+pushing, and placing. Recreating these results will be the first
+step in this project and will ensure that we are comfortable with 
+the algorithm and are certain it is working correctly. 
+
+\subsection{Tier 2}
+Once we have the vanilla MIL algorithm working we will extend the network
+architecture to utilize an external memory. Our plan is to develop one
+architecture that uses the memory put forward in "Learning to Remember Rare Events"
+and another that uses the memory unit described in 
+"Matching Networks for One Shot Learning".
+
+\subsection{Evaluation}
+We will evaluate the success of our models by plotting the task success rate
+vs. the number of examples in the training set for both 1-shot and 5-shot validation
+sets. Here "shot" refers to the number of samples that the Meta model 
+uses for fine-tuning to a held out validation task.
+

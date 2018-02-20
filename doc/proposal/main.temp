@@ -1,0 +1,170 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2017
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2017}
+
+
+\usepackage[final]{nips_2017}
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{nips_2017}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+
+
+\usepackage[
+backend=bibtex,
+sorting=none,
+]{biblatex}
+\addbibresource{bib.bib}
+
+%\usepackage{algorithm, algorithmic}%
+\usepackage{tabularx,dcolumn,booktabs,caption,ragged2e,geometry}
+\newcolumntype{d}[1]{D..{#1}} % for aligning numerical data on decimal marker
+\newcommand\mX[1]{\multicolumn{1}{X}{#1}} % handy shortcut macro
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcommand\mC[1]{\multicolumn{1}{C}{\textbf{#1}}} % another handy shortcut macro
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\raggedbottom
+\setlength\floatsep{1.25\baselineskip  minus 3pt}
+\setlength\textfloatsep{1.25\baselineskip  minus 3pt}
+\setlength\intextsep{1.25\baselineskip  minus 3pt}
+\usepackage{algorithmicx}
+\usepackage[Algorithm,ruled]{algorithm}
+\lstset { %
+    language=python,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+}
+%\input{preamble/preamble_math}
+
+
+\title{Meta Learning with Memory Networks}
+
+\author{
+Ryan Brand \\
+Department of Computer Science\\
+Columbia University \\
+\texttt{rmb2208@columbia.edu} \\
+\And
+Jason Krone \\
+Department of Computer Science\\
+Columbia University \\
+\texttt{jpk2151@columbia.edu} \\
+\And
+Ted Moskovitz \\
+Department of Computer Science\\
+Columbia University \\
+\texttt{thm2118@columbia.edu} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+To provide context we 
+introduce the Meta-Imitation Learning (MIL) algorithm propsed in the paper below.
+
+This project builds on the work done in "One-Shot Visual Imitation Learning via Meta-Learning"
+by Chelsea Finn et al. 2017. We aim to both duplicate the results presented in the paper
+for simulated environements as well as improve the neural network architecture proposed
+by Finn et al. through the addition of a memory component. To provide context we 
+introduce the Meta-Imitation Learning (MIL) algorithm propsed in the paper below. 
+
+
+\subsubsection{Two head architecture:}
+
+The architecture uses two heads:
+\begin{enumerate}
+    \item pre-update head whose parameters are not used in post-update policy. (think this is $\theta$)
+    \item post-update head which is not updated using the demonstration (think this is $\theta'$)
+\end{enumerate}
+
+\subsection{Training:}
+
+\textbf{Meta-training loop:}
+\begin{enumerate}
+    \item Sample a batch of tasks and two demonstrations per task
+    \item Using one of the demonstrations $\tau^{(1)} \sim T_i$ compute $\theta^{'}_{i}$ for each task $T_i$
+    \item Using the second demonstration $\tau^{(2)} \sim T_i$ compute the gradient of the meta-objective
+    \item Update $\theta$ using the gradient of the meta objective
+          $\Delta_\theta \sum_{T_i \sim p(T)} L_{T_i}(f_{\theta^{'}_{i}})$ with the MSE loss given above
+\end{enumerate}
+
+\subsection{Experiments:}
+
+\begin{enumerate}
+    \
+    \item Real-World Placing
+\end{enumerate}
+
+
+
+
+
+\section*{Background}
+
+Meta-Learning
+in general is focused on learning-to-learn i.e. optimizing for the efficient transfer of knowledge from
+one skill to a new skill.  This particular work by Finn et al. applies Meta-Learning to
+the imitation learning domain to allow robots to learn from a single video demonstration.
+
+MIL learns a policy $\pi$ that maps observations $o$ to actions $a$ from video demonstration
+over a number of timesteps which together consitute a trajectory $\tau := \{o_1, a_1, \dots, o_T, a_T \}$.
+This is done by optimizing the following Meta-Learning objective:
+$$\min_{\theta} \sum_{T_i \sim p(T)} L_{T_i}(f_{\theta_{i}^{'}}) =
+\sum_{T_i \sim p(T)} L_{T_i}(f_{\theta - \alpha \Delta_{\theta}L_{T_i}(f_\theta)})$$
+, where $L_{T_i}$ is defined as
+$$L_{T_i}(f_\phi) = \sum_{\tau^{(j) \sim T_i}} \sum_t \norm{f_{\phi}(o_t^{(j)}) - a_t^{(j)}}_2^2$$
+As is suggested in the form of these equations the goal of Meta-Learning is to optimize for a
+model initalization that can easily by fine-tuned by taking a step with SGD.
+
+\section*{Implementation}
+
+\subsection*{Division of Work}
+
+\subsection*{Milestone 1}
+
+\subsection*{Milestone 2}
+
+\section*{Evaluation}
+As discussed above we will duplicate the results presented in the paper on three simulated environments
+designed for simulated reaching, pushing, and placing. Recreating these results will be the first
+step in this project and will ensure that we are comfortable with the algorithm and are certain it is
+working correctly.
+
+
+
+\subsection*{Tier 1 Results}
+
+\subsection*{Tier 2 Results}
+
+\nocite{*}
+\printbibliography
+
+\end{document}
+
+
+
+Project Description:  Make sure you include milestones of increasing complexity in what you will do. We need a way to gauge your success on the project - tier 1 results, tier 2 results (if time permits).
+You should also include some background references to similar work. Make sure you search google and google scholar for relevant previous work related to your project, and include a citation in your proposal. It is acceptable to do a project similar to an existing piece of work if you create your own independent version of the work. It is probably better to use the existing work as a guide, and explain how you might want to extend or differentiate this work in your project.
+
+If a group project, make sure you discuss how the work will be divided up
+
+

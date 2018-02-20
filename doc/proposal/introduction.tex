@@ -1,0 +1,26 @@
+\section{Introduction}
+
+Meta-Learning in general is focused on learning-to-learn i.e. optimizing for the 
+efficient transfer of knowledge from one skill to a new skill. In a sense, 
+Meta-Learning optimizes the model initialization such that the model can easily 
+by fine-tuned by taking a step with stochastic gradient descent.
+The work by Finn et al. that we are building on uses Meta Imitation Learning (MIL)
+to teach robots how to accomplish a task from 
+from a single demonstration. Concretely, MIL learns a policy $\pi$ that maps 
+observations $o$ (video frames) to actions $a$ (motor torques) in 
+order to "imitate" an expert trajectory $\tau := \{o_1, a_1, \dots, o_T, a_T \}$
+used to successful accomplish a task $T_i$. The main distinction between 
+MIL and other imitation learning methods is the MIL optimizes for the cumulative
+performance over a number of tasks on a held out validation set after fitting
+to an unseen example. This is best understood by inspecting the training objective
+given in our approach section.
+
+MIL is a relatively new method that was introduced in 2017. Consequently, we are
+in the "exploration" phase regarding model architectures for MIL.
+This is evidenced by the number of experiments with model architectures run by Finn et al.
+We contribute to this search for superior models by evaluating the performance of 
+networks augmented with external memories. Memory based models are a good candidate for 
+MIL because they have have already demonstrated success in other Meta-Learning and
+few shot learning tasks but to the best of our knolwedge have not been applied to MIL.
+We discuss these related works in the subsequent section.
+

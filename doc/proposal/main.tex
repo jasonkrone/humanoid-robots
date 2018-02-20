@@ -1,0 +1,96 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2017
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2017}
+
+
+\usepackage[final]{nips_2017}
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{nips_2017}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+
+
+\usepackage[
+backend=bibtex,
+sorting=none,
+]{biblatex}
+\addbibresource{bib.bib}
+
+%\usepackage{algorithm, algorithmic}%
+\usepackage{tabularx,dcolumn,booktabs,caption,ragged2e,geometry}
+\newcolumntype{d}[1]{D..{#1}} % for aligning numerical data on decimal marker
+\newcommand\mX[1]{\multicolumn{1}{X}{#1}} % handy shortcut macro
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcommand\mC[1]{\multicolumn{1}{C}{\textbf{#1}}} % another handy shortcut macro
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\raggedbottom
+\setlength\floatsep{1.25\baselineskip  minus 3pt}
+\setlength\textfloatsep{1.25\baselineskip  minus 3pt}
+\setlength\intextsep{1.25\baselineskip  minus 3pt}
+\usepackage{algorithmicx}
+\usepackage[Algorithm,ruled]{algorithm}
+\lstset { %
+    language=python,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+}
+%\input{preamble/preamble_math}
+
+
+\title{Meta Learning with Memory Networks}
+
+\author{
+Ryan Brand \\
+Department of Computer Science\\
+Columbia University \\
+\texttt{rmb2208@columbia.edu} \\
+\And
+Jason Krone \\
+Department of Computer Science\\
+Columbia University \\
+\texttt{jpk2151@columbia.edu} \\
+\And
+Ted Moskovitz \\
+Department of Computer Science\\
+Columbia University \\
+\texttt{thm2118@columbia.edu} \\
+}
+
+\begin{document}
+
+\maketitle
+\input{abstract}
+
+\input{introduction}
+
+\input{relatedwork}
+
+\input{approach}
+
+\input{experiments}
+
+\input{conclusions}
+
+\clearpage
+
+\nocite{*}
+\printbibliography
+
+\end{document}

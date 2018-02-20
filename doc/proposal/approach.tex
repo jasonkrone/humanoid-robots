@@ -1,0 +1,10 @@
+\section{Approach}
+
+Meta-Imitation Learning optimizes the following objective objective:
+$$\min_{\theta} \sum_{T_i \sim p(T)} L_{T_i}(f_{\theta_{i}^{'}}) =
+\sum_{T_i \sim p(T)} L_{T_i}(f_{\theta - \alpha \Delta_{\theta}L_{T_i}(f_\theta)})$$
+, where $L_{T_i}$ is defined as
+$$L_{T_i}(f_\phi) = \sum_{\tau^{(j) \sim T_i}} \sum_t \norm{f_{\phi}(o_t^{(j)}) - a_t^{(j)}}_2^2$$
+
+
+
